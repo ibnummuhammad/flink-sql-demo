@@ -23,6 +23,11 @@ Blog: https://flink.apache.org/2020/07/28/flink-sql-demo-building-e2e-streaming-
     cd sql-client
     docker build . --tag ibnummuhammad/demo-sql-client:0.2
 
+## build ibnummuhammad/mysql-example:0.2
+
+    cd mysql
+    docker build . --tag ibnummuhammad/mysql-example:0.2
+
 # How to run
 
     docker-compose up --detach

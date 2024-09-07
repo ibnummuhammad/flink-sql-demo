@@ -40,7 +40,7 @@ services:
       ZOOKEEPER_CONNECT: zookeeper
       KAFKA_BOOTSTRAP: kafka
   mysql:
-    image: jark/mysql-example:0.2
+    image: ibnummuhammad/mysql-example:0.2
     ports:
       - "3306:3306"
     environment:
