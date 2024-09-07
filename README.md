@@ -18,6 +18,11 @@ Blog: https://flink.apache.org/2020/07/28/flink-sql-demo-building-e2e-streaming-
     cp ~/Downloads/user_behavior.log ~/Documents/github/ibnummuhammad/flink-sql-demo/datagen
     docker build . --tag ibnummuhammad/datagen:0.2
 
+## build ibnummuhammad/demo-sql-client:0.2
+
+    cd sql-client
+    docker build . --tag ibnummuhammad/demo-sql-client:0.2
+
 # How to run
 
     docker-compose up --detach

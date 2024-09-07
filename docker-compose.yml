@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   sql-client:
-    image: jark/demo-sql-client:0.2
+    image: ibnummuhammad/demo-sql-client:0.2
     depends_on:
       - kafka
       - jobmanager
