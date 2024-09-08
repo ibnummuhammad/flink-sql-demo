@@ -26,16 +26,16 @@ FROM maven:3.6-jdk-8-slim AS builder
 # Build SQL Playground Image
 ###############################################################################
 
-FROM flink:1.12.7-scala_2.11
+FROM flink:1.13.6-scala_2.11
 
 # Copy sql-client script
 COPY bin/* /opt/sql-client/
 RUN mkdir -p /opt/sql-client/lib
 
 # Download connector libraries
-RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-elasticsearch7_2.11/1.12.7/flink-sql-connector-elasticsearch7_2.11-1.12.7.jar;
-RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-kafka_2.11/1.12.7/flink-sql-connector-kafka_2.11-1.12.7.jar;
-RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-connector-jdbc_2.11/1.12.7/flink-connector-jdbc_2.11-1.12.7.jar;
+RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-elasticsearch7_2.11/1.13.6/flink-sql-connector-elasticsearch7_2.11-1.13.6.jar;
+RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-sql-connector-kafka_2.11/1.13.6/flink-sql-connector-kafka_2.11-1.13.6.jar;
+RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/org/apache/flink/flink-connector-jdbc_2.11/1.13.6/flink-connector-jdbc_2.11-1.13.6.jar;
 RUN wget -P /opt/sql-client/lib/ https://repo.maven.apache.org/maven2/mysql/mysql-connector-java/8.0.19/mysql-connector-java-8.0.19.jar;
 
 # Copy configuration
