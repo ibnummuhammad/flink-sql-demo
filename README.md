@@ -31,3 +31,23 @@ Blog: https://flink.apache.org/2020/07/28/flink-sql-demo-building-e2e-streaming-
 # How to run
 
     docker-compose up --detach
+
+# How to add table
+
+```
+CREATE TABLE user_behavior (
+    user_id BIGINT,
+    item_id BIGINT,
+    category_id BIGINT,
+    behavior STRING,
+    ts TIMESTAMP(3),
+    proctime AS PROCTIME(),   -- generates processing-time attribute using computed column
+    WATERMARK FOR ts AS ts - INTERVAL '5' SECOND  -- defines watermark on ts column, marks ts as event-time attribute
+) WITH (
+    'connector' = 'kafka',  -- using kafka connector
+    'topic' = 'user_behavior',  -- kafka topic
+    'scan.startup.mode' = 'earliest-offset',  -- reading from the beginning
+    'properties.bootstrap.servers' = 'kafka:9092',  -- kafka broker address
+    'format' = 'json'  -- the data format is json
+);
+```

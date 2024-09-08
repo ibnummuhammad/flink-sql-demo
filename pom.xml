@@ -10,8 +10,8 @@
 
 
     <properties>
-        <flink.version>1.10.0</flink.version>
-        <kafka.version>2.2.0</kafka.version>
+        <flink.version>1.17.2</flink.version>
+        <kafka.version>2.2.1</kafka.version>
         <jmh.version>1.17.5</jmh.version>
     </properties>
 
@@ -59,10 +59,12 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.apache.flink/flink-sql-connector-hbase-1.4 -->
         <dependency>
             <groupId>org.apache.flink</groupId>
-            <artifactId>flink-sql-connector-hbase-2.2_2.11</artifactId>
-            <version>1.14.6</version>
+            <artifactId>flink-sql-connector-hbase-1.4</artifactId>
+            <version>3.0.0-1.17</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>

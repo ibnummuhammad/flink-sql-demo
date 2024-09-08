@@ -33,7 +33,7 @@ services:
         taskmanager.numberOfTaskSlots: 10
   datagen:
     image: ibnummuhammad/datagen:0.2
-    command: "java -classpath /opt/datagen/flink-sql-demo.jar myflink.SourceGenerator --input /opt/datagen/user_behavior.log --output kafka kafka:9094 --speedup 2000"
+    command: "java -classpath /opt/datagen/flink-sql-demo.jar myflink.SourceGenerator --input /opt/datagen/user_behavior.log --output kafka kafka:9092 --speedup 2000"
     depends_on:
       - kafka
     environment:
@@ -54,21 +54,19 @@ services:
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
   kafka:
-    image: wurstmeister/kafka:2.12-2.2.1
+    image: bitnami/kafka:2.2.1
     ports:
-      - "9092:9092"
-      - "9094:9094"
-    depends_on:
+      - 29092:29092
+      - 9092:9092
+    links:
       - zookeeper
     environment:
-      - KAFKA_ADVERTISED_LISTENERS=INSIDE://:9094,OUTSIDE://localhost:9092
-      - KAFKA_LISTENERS=INSIDE://:9094,OUTSIDE://:9092
-      - KAFKA_LISTENER_SECURITY_PROTOCOL_MAP=INSIDE:PLAINTEXT,OUTSIDE:PLAINTEXT
-      - KAFKA_INTER_BROKER_LISTENER_NAME=INSIDE
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
-      - KAFKA_CREATE_TOPICS="user_behavior:1:1"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:29092
+      - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      - KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://host.minikube.internal:29092
+      - KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT
   elasticsearch:
     image: docker.elastic.co/elasticsearch/elasticsearch:7.6.0
     environment:
