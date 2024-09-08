@@ -11,7 +11,7 @@
 
     <properties>
         <flink.version>1.13.6</flink.version>
-        <kafka.version>2.2.1</kafka.version>
+        <kafka.version>2.4.1</kafka.version>
         <jmh.version>1.17.5</jmh.version>
     </properties>
 
