@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
@@ -10,7 +10,7 @@
 
 
     <properties>
-        <flink.version>1.17.2</flink.version>
+        <flink.version>1.12.7</flink.version>
         <kafka.version>2.2.1</kafka.version>
         <jmh.version>1.17.5</jmh.version>
     </properties>
@@ -95,7 +95,8 @@
                     <!-- The semantics of this option are reversed, see MCOMPILER-209. -->
                     <useIncrementalCompilation>false</useIncrementalCompilation>
                     <compilerArgs>
-                        <!-- Prevents recompilation due to missing package-info.class, see MCOMPILER-205 -->
+                        <!-- Prevents recompilation due to missing package-info.class, see
+                        MCOMPILER-205 -->
                         <arg>-Xpkginfo:always</arg>
                     </compilerArgs>
                 </configuration>
